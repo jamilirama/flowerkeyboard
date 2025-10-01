@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Keyboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="app-title">🌸 Flower Keyboard 🌸</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Canvas Area -->
+            <div class="canvas-container">
+                <div id="canvas" class="canvas" tabindex="0">
+                    <!-- Canvas items will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <button id="backgroundBtn" class="btn btn--primary toolbar-btn">
+                    <span class="btn-icon">🎨</span>
+                    Change Background
+                </button>
+                <button id="keyboardBtn" class="btn btn--primary toolbar-btn">
+                    <span class="btn-icon">⌨️</span>
+                    Show Keyboard
+                </button>
+                <button id="textBtn" class="btn btn--primary toolbar-btn">
+                    <span class="btn-icon">📝</span>
+                    Add Text
+                </button>
+                <button id="clearBtn" class="btn btn--secondary toolbar-btn">
+                    <span class="btn-icon">🗑️</span>
+                    Clear All
+                </button>
+                <button id="downloadBtn" class="btn btn--success toolbar-btn">
+                    <span class="btn-icon">⬇️</span>
+                    Download
+                </button>
+            </div>
+        </main>
+
+        <!-- Background Selection Panel -->
+        <div id="backgroundPanel" class="panel background-panel hidden">
+            <div class="panel-header">
+                <h3>Choose Background</h3>
+                <button id="closeBgPanel" class="close-btn">×</button>
+            </div>
+            <div class="background-grid" id="backgroundGrid">
+                <!-- Background options will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Virtual Keyboard Panel -->
+        <div id="keyboardPanel" class="panel keyboard-panel hidden">
+            <div class="panel-header">
+                <h3>Flower Keyboard</h3>
+                <button id="closeKeyboardPanel" class="close-btn">×</button>
+            </div>
+            <div class="keyboard-grid" id="keyboardGrid">
+                <!-- Keyboard keys will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Text Input Modal -->
+        <div id="textModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add Text</h3>
+                    <button id="closeTextModal" class="close-btn">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Text:</label>
+                        <input type="text" id="textInput" class="form-control" placeholder="Enter your text...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Font Size:</label>
+                        <select id="fontSizeSelect" class="form-control">
+                            <option value="16">Small (16px)</option>
+                            <option value="24" selected>Medium (24px)</option>
+                            <option value="32">Large (32px)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Color:</label>
+                        <div class="color-grid" id="colorGrid">
+                            <!-- Color options will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Font:</label>
+                        <select id="fontSelect" class="form-control">
+                            <option value="Arial">Arial</option>
+                            <option value="Comic Sans MS" selected>Comic Sans MS</option>
+                            <option value="Courier New">Courier New</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelText" class="btn btn--outline">Cancel</button>
+                    <button id="addText" class="btn btn--primary">Add Text</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="success-message hidden">
+            <div class="success-content">
+                <span class="success-icon">✅</span>
+                <span class="success-text">Image downloaded successfully!</span>
+            </div>
+        </div>
+
+        <!-- Hidden canvas for download -->
+        <canvas id="downloadCanvas" style="display: none;"></canvas>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
