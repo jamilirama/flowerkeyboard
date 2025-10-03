@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flower Keyboard</title>
+    <title>Flower Keyboard - Enhanced</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,26 +24,47 @@
 
             <!-- Toolbar -->
             <div class="toolbar">
-                <button id="backgroundBtn" class="btn btn--primary toolbar-btn">
-                    <span class="btn-icon">🎨</span>
-                    Change Background
-                </button>
-                <button id="keyboardBtn" class="btn btn--primary toolbar-btn">
-                    <span class="btn-icon">⌨️</span>
-                    Show Keyboard
-                </button>
-                <button id="textBtn" class="btn btn--primary toolbar-btn">
-                    <span class="btn-icon">📝</span>
-                    Add Text
-                </button>
-                <button id="clearBtn" class="btn btn--secondary toolbar-btn">
-                    <span class="btn-icon">🗑️</span>
-                    Clear All
-                </button>
-                <button id="downloadBtn" class="btn btn--success toolbar-btn">
-                    <span class="btn-icon">⬇️</span>
-                    Download
-                </button>
+                <div class="toolbar-row">
+                    <select id="canvasSizeSelector" class="form-control canvas-size-selector">
+                        <option value="mobile">Mobile (320×568)</option>
+                        <option value="ipad">iPad (768×1024)</option>
+                        <option value="laptop" selected>Laptop (1024×768)</option>
+                    </select>
+                    <button id="backgroundBtn" class="btn btn--primary toolbar-btn">
+                        <span class="btn-icon">🎨</span>
+                        Background
+                    </button>
+                    <button id="keyboardBtn" class="btn btn--primary toolbar-btn">
+                        <span class="btn-icon">⌨️</span>
+                        Keyboard
+                    </button>
+                    <button id="textBtn" class="btn btn--primary toolbar-btn">
+                        <span class="btn-icon">📝</span>
+                        Add Text
+                    </button>
+                </div>
+                <div class="toolbar-row">
+                    <button id="containersBtn" class="btn btn--primary toolbar-btn">
+                        <span class="btn-icon">🏺</span>
+                        Containers
+                    </button>
+                    <button id="ribbonsBtn" class="btn btn--primary toolbar-btn">
+                        <span class="btn-icon">🎀</span>
+                        Ribbons
+                    </button>
+                    <button id="deleteBtn" class="btn btn--outline toolbar-btn">
+                        <span class="btn-icon">🗑️</span>
+                        Delete Selected
+                    </button>
+                    <button id="clearBtn" class="btn btn--secondary toolbar-btn">
+                        <span class="btn-icon">🧹</span>
+                        Clear All
+                    </button>
+                    <button id="downloadBtn" class="btn btn--success toolbar-btn">
+                        <span class="btn-icon">⬇️</span>
+                        Download
+                    </button>
+                </div>
             </div>
         </main>
 
@@ -64,8 +85,57 @@
                 <h3>Flower Keyboard</h3>
                 <button id="closeKeyboardPanel" class="close-btn">×</button>
             </div>
+            <div class="keyboard-info">
+                <p>Letters A-Z and numbers 0-9 available!</p>
+            </div>
             <div class="keyboard-grid" id="keyboardGrid">
                 <!-- Keyboard keys will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Container Selection Panel -->
+        <div id="containersPanel" class="panel containers-panel hidden">
+            <div class="panel-header">
+                <h3>Choose Container</h3>
+                <button id="closeContainersPanel" class="close-btn">×</button>
+            </div>
+            <div class="container-selection">
+                <div class="container-designs">
+                    <h4>Container Type</h4>
+                    <div class="design-grid" id="containerDesigns">
+                        <!-- Container designs will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="color-selection">
+                    <h4>Container Color</h4>
+                    <div class="color-grid" id="containerColors">
+                        <!-- Container colors will be populated by JavaScript -->
+                    </div>
+                </div>
+                <button id="addContainerBtn" class="btn btn--primary add-container-btn">Add Container</button>
+            </div>
+        </div>
+
+        <!-- Ribbon Selection Panel -->
+        <div id="ribbonsPanel" class="panel ribbons-panel hidden">
+            <div class="panel-header">
+                <h3>Choose Ribbon Design</h3>
+                <button id="closeRibbonsPanel" class="close-btn">×</button>
+            </div>
+            <div class="ribbon-selection">
+                <div class="ribbon-designs">
+                    <h4>Ribbon Design</h4>
+                    <div class="design-grid" id="ribbonDesigns">
+                        <!-- Ribbon designs will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="color-selection">
+                    <h4>Ribbon Color</h4>
+                    <div class="color-grid" id="ribbonColors">
+                        <!-- Ribbon colors will be populated by JavaScript -->
+                    </div>
+                </div>
+                <button id="addRibbonBtn" class="btn btn--primary add-ribbon-btn">Add Ribbon</button>
             </div>
         </div>
 
@@ -87,11 +157,12 @@
                             <option value="16">Small (16px)</option>
                             <option value="24" selected>Medium (24px)</option>
                             <option value="32">Large (32px)</option>
+                            <option value="48">Extra Large (48px)</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Color:</label>
-                        <div class="color-grid" id="colorGrid">
+                        <div class="color-grid" id="textColorGrid">
                             <!-- Color options will be populated by JavaScript -->
                         </div>
                     </div>
@@ -101,6 +172,7 @@
                             <option value="Arial">Arial</option>
                             <option value="Comic Sans MS" selected>Comic Sans MS</option>
                             <option value="Courier New">Courier New</option>
+                            <option value="Georgia">Georgia</option>
                         </select>
                     </div>
                 </div>
@@ -111,12 +183,36 @@
             </div>
         </div>
 
+        <!-- Context Menu -->
+        <div id="contextMenu" class="context-menu hidden">
+            <div class="context-menu-item" id="deleteContextItem">
+                <span class="context-icon">🗑️</span>
+                Delete
+            </div>
+        </div>
+
         <!-- Success Message -->
         <div id="successMessage" class="success-message hidden">
             <div class="success-content">
                 <span class="success-icon">✅</span>
                 <span class="success-text">Image downloaded successfully!</span>
             </div>
+        </div>
+
+        <!-- Undo Notification -->
+        <div id="undoNotification" class="undo-notification hidden">
+            <div class="undo-content">
+                <span class="undo-text">Item deleted</span>
+                <button id="undoBtn" class="btn btn--sm btn--outline">Undo</button>
+            </div>
+        </div>
+
+        <!-- Resize Handles Template -->
+        <div id="resizeHandlesTemplate" class="resize-handles hidden">
+            <div class="resize-handle nw" data-direction="nw"></div>
+            <div class="resize-handle ne" data-direction="ne"></div>
+            <div class="resize-handle sw" data-direction="sw"></div>
+            <div class="resize-handle se" data-direction="se"></div>
         </div>
 
         <!-- Hidden canvas for download -->
